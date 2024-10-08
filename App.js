@@ -39,7 +39,11 @@ export default function App() {
 	// afficher et stocker les éléments pour l'affichage t'as capté
 	const logIngredients = () => {
 		const ingList = ingredients.map((item) => item.value).join(", ");
-		setStoredIngredients(ingList);
+		if (ingredients.length > 0) {
+			setStoredIngredients(ingList);
+		} else {
+			setStoredIngredients("Aucun ingrédient ajouté.");
+		}
 		console.log("Ingrédients stockés : ", ingList);
 	};
 
@@ -80,10 +84,11 @@ export default function App() {
 
 			{/* afficher ce qu'on va graille */}
 			<View style={{ width: "90%", marginTop: 20 }}>
-				<Text style={styles.resultText}>
-					Ingrédients pour la recherche :{" "}
-					{storedIngredients || "Aucun ingrédient ajouté."}
-				</Text>
+				<View style={{ width: "90%", marginTop: 20 }}>
+					<Text style={styles.resultText}>
+						Ingrédients pour la recherche : {storedIngredients}
+					</Text>
+				</View>
 			</View>
 
 			{/* bouton pour le fetch mais pour le moment c'est just un console log mdrr */}
